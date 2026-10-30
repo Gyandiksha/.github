@@ -1,0 +1,59 @@
+name: "Requirement Specification"
+description: Define a new Epic, Feature, or System Requirement
+title: "[REQ]: "
+labels: ["Requirement"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please fill out the requirement details for the Ucchha-Shiksha Samiksha Kendra project."
+  - type: input
+    id: roles
+    attributes:
+      label: Authorized Roles
+      description: Who can access or execute this feature? (e.g., Admin, Student, Faculty)
+  - type: textarea
+    id: business_rules
+    attributes:
+      label: Business Rules / Detailed Description
+      description: Provide the detailed functional description and underlying business rules.
+    validations:
+      required: true
+  - type: textarea
+    id: preconditions
+    attributes:
+      label: Preconditions & Triggers
+      description: What state must the system be in, and what event triggers this?
+  - type: textarea
+    id: inputs_validations
+    attributes:
+      label: Inputs, Fields & Validation Rules
+      description: Specify form inputs and required validation logic.
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow / Process Flow
+      description: Outline the step-by-step system flow.
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance Criteria & Expected Result
+      description: What defines this requirement as complete?
+    validations:
+      required: true
+  - type: textarea
+    id: alternate_scenario
+    attributes:
+      label: Alternate / Exception Scenarios
+      description: How should the system handle failures or edge cases?
+  - type: input
+    id: ui_reference
+    attributes:
+      label: UI Rules / Figma Reference
+      description: Paste the link to the Figma design or UI guidelines.
+  - type: checkboxes
+    id: communication
+    attributes:
+      label: Stakeholder Communication
+      options:
+        - label: Consulted phase completed
+        - label: Informed phase completed
