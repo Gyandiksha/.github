@@ -1,0 +1,59 @@
+name: "QA Testing & Defect Tracking"
+description: Report a bug or document a test case execution failure
+title: "[QA]: "
+labels: ["Bug", "QA"]
+body:
+  - type: dropdown
+    id: testing_category
+    attributes:
+      label: Testing Category
+      options:
+        - Functional
+        - Non-Functional
+        - UI/UX
+        - Performance / Load
+        - Security
+    validations:
+      required: true
+  - type: input
+    id: test_scenario
+    attributes:
+      label: Test Scenario / Test Case Reference
+      description: Provide the specific test scenario or ID being executed.
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / Configuration
+      description: OS, Browser, K3s Cluster, Database Version, etc.
+      placeholder: e.g., Staging environment, Chrome v118, PostgreSQL 15
+    validations:
+      required: true
+  - type: textarea
+    id: test_steps
+    attributes:
+      label: Test Steps & Preconditions
+      description: Step-by-step instructions to reproduce the test or defect.
+    validations:
+      required: true
+  - type: textarea
+    id: test_data
+    attributes:
+      label: Test Data / Input
+      description: What specific payload, file, or data was used?
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: Expected Result
+    validations:
+      required: true
+  - type: textarea
+    id: actual_result
+    attributes:
+      label: Actual Result
+    validations:
+      required: true
+  - type: input
+    id: attachment
+    attributes:
+      label: Attachment Link
+      description: Link to screenshots, video recordings, or log files (e.g., Grafana/Dozzle links).
