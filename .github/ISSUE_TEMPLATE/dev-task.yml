@@ -3,6 +3,13 @@ description: Create a technical task for Frontend, Backend, API, or DB work
 title: "[TASK]: "
 labels: ["Dev Task"]
 body:
+  - type: input
+    id: parent
+    attributes:
+      label: Parent Issue
+      description: "The Story this task belongs to, e.g. #63 or a full issue URL."
+    validations:
+      required: true
   - type: dropdown
     id: task_type
     attributes:
@@ -19,16 +26,20 @@ body:
     id: accountable_person
     attributes:
       label: Accountable Person
-      description: Tag the person ultimately accountable (e.g., Lead Engineer/Architect). Use GitHub Assignees for the Responsible Person.
+      description: "@mention the person ultimately accountable (Lead / Architect). Use Assignees for the Responsible Person."
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimated Effort (Hours)
+      placeholder: e.g. 6
   - type: textarea
     id: description
     attributes:
       label: Technical Description & Action Items
-      description: Provide technical requirements, architectural decisions, or specific coding instructions.
     validations:
       required: true
   - type: textarea
     id: dependencies
     attributes:
       label: Blockers & Dependencies
-      description: List any APIs, DB migrations (e.g., Flyway), or pending PRs required before this can be completed.  
+      description: APIs, DB migrations (e.g., Flyway), or pending PRs needed first.
