@@ -1,0 +1,34 @@
+name: "Development Task"
+description: Create a technical task for Frontend, Backend, API, or DB work
+title: "[TASK]: "
+labels: ["Dev Task"]
+body:
+  - type: dropdown
+    id: task_type
+    attributes:
+      label: Task Type
+      options:
+        - Frontend
+        - Backend
+        - API
+        - Database (DB)
+        - Infrastructure / DevOps
+    validations:
+      required: true
+  - type: input
+    id: accountable_person
+    attributes:
+      label: Accountable Person
+      description: Tag the person ultimately accountable (e.g., Lead Engineer/Architect). Use GitHub Assignees for the Responsible Person.
+  - type: textarea
+    id: description
+    attributes:
+      label: Technical Description & Action Items
+      description: Provide technical requirements, architectural decisions, or specific coding instructions.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Blockers & Dependencies
+      description: List any APIs, DB migrations (e.g., Flyway), or pending PRs required before this can be completed.  
