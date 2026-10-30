@@ -1,55 +1,105 @@
 name: "Requirement Specification"
-description: Define a new Epic, Feature, or System Requirement
+description: Define an Epic, Feature, Sub-Feature, or User Story
 title: "[REQ]: "
 labels: ["Requirement"]
 body:
   - type: markdown
     attributes:
-      value: "Please fill out the requirement details for the Ucchha-Shiksha Samiksha Kendra project."
+      value: "Requirement details for the Ucchha-Shiksha Samiksha Kendra project. Hierarchy: Epic → Feature → Sub-Feature → Story → Task."
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level
+      options:
+        - Epic
+        - Feature
+        - Sub-Feature
+        - Story
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Parent Issue
+      description: "The Epic / Feature / Sub-Feature this belongs to, e.g. #63 or a full issue URL. Leave empty for an Epic."
+  - type: input
+    id: project_version
+    attributes:
+      label: Project Version
+      placeholder: e.g. v1.0
+  - type: dropdown
+    id: requirement_type
+    attributes:
+      label: Requirement Type
+      options:
+        - Functional
+        - Non-Functional
   - type: input
     id: roles
     attributes:
       label: Authorized Roles
-      description: Who can access or execute this feature? (e.g., Admin, Student, Faculty)
+      description: Who can access or execute this? (e.g., Admin, Student, Faculty)
   - type: textarea
     id: business_rules
     attributes:
       label: Business Rules / Detailed Description
-      description: Provide the detailed functional description and underlying business rules.
     validations:
       required: true
   - type: textarea
     id: preconditions
     attributes:
-      label: Preconditions & Triggers
-      description: What state must the system be in, and what event triggers this?
+      label: Preconditions
+      description: What state must the system be in?
   - type: textarea
-    id: inputs_validations
+    id: trigger
     attributes:
-      label: Inputs, Fields & Validation Rules
-      description: Specify form inputs and required validation logic.
+      label: Trigger / Event
+      description: What event starts this?
   - type: textarea
-    id: workflow
+    id: inputs
     attributes:
-      label: Workflow / Process Flow
-      description: Outline the step-by-step system flow.
+      label: Inputs / Fields
+  - type: textarea
+    id: validations
+    attributes:
+      label: Validation Rules
   - type: textarea
     id: acceptance_criteria
     attributes:
-      label: Acceptance Criteria & Expected Result
+      label: Acceptance Criteria
       description: What defines this requirement as complete?
     validations:
       required: true
   - type: textarea
-    id: alternate_scenario
+    id: action_items
     attributes:
-      label: Alternate / Exception Scenarios
-      description: How should the system handle failures or edge cases?
+      label: Action Items
   - type: input
     id: ui_reference
     attributes:
       label: UI Rules / Figma Reference
-      description: Paste the link to the Figma design or UI guidelines.
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Workflow / Process Flow
+  - type: textarea
+    id: expected_result
+    attributes:
+      label: Expected Result / Outputs
+  - type: textarea
+    id: alternate_scenario
+    attributes:
+      label: Alternate / Exception Scenarios
+  - type: input
+    id: consulted
+    attributes:
+      label: Consulted
+      description: Who must be consulted? (@mentions)
+  - type: input
+    id: informed
+    attributes:
+      label: Informed
+      description: Who must be informed? (@mentions)
   - type: checkboxes
     id: communication
     attributes:
