@@ -1,5 +1,5 @@
 name: "Bug Report"
-description: Report a defect found during testing
+description: "Report a defect found during testing. Track it with Bug Status on the board: New → Valid / Invalid → Fixing → On Staging → Retest → Closed / Reopened."
 title: "[BUG]: "
 labels: ["Bug"]
 body:
@@ -7,7 +7,7 @@ body:
     id: parent
     attributes:
       label: Parent Issue
-      description: "The Task (or its Test Case) where the bug was found, e.g. #64 or a full issue URL."
+      description: "The Task where the bug was found, e.g. #64 (a Test Case number also works; the bug is linked to its task)."
     validations:
       required: true
   - type: dropdown
