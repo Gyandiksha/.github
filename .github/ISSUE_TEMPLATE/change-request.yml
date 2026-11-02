@@ -1,0 +1,59 @@
+name: "Change Request / Clarification"
+description: "Development feedback on a requirement: ask for a clarification or propose a change"
+title: "[CR]: "
+labels: ["Change Request"]
+body:
+  - type: markdown
+    attributes:
+      value: "Raised against a **requirement** (Epic / Feature / Sub-Feature / Story). Its owner (EM) is notified automatically."
+  - type: input
+    id: parent
+    attributes:
+      label: Parent Issue
+      description: "The requirement this is about, e.g. #11 or a full issue URL."
+    validations:
+      required: true
+  - type: dropdown
+    id: request_type
+    attributes:
+      label: Request Type
+      options:
+        - Clarification
+        - Change Request
+    validations:
+      required: true
+  - type: input
+    id: raised_from
+    attributes:
+      label: Raised From Task
+      description: "Optional: the task where this came up, e.g. #14"
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is unclear, or what should change and why?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed Change
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impact
+      multiple: true
+      options:
+        - Scope
+        - Timeline
+        - Effort
+        - Design / UI
+        - None
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - High
+        - Medium
+        - Low
