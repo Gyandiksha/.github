@@ -1,0 +1,40 @@
+name: "Risk"
+description: "Log a project risk for monitoring (PM)"
+title: "[RISK]: "
+labels: ["Risk"]
+body:
+  - type: input
+    id: related
+    attributes:
+      label: Related Issue
+      description: "Optional: the requirement or task this risk affects, e.g. #11"
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What could go wrong?
+    validations:
+      required: true
+  - type: dropdown
+    id: likelihood
+    attributes:
+      label: Likelihood
+      options: [High, Medium, Low]
+    validations:
+      required: true
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Risk Impact
+      options: [High, Medium, Low]
+    validations:
+      required: true
+  - type: input
+    id: owner
+    attributes:
+      label: Risk Owner
+      description: "@mention who manages this risk"
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Mitigation Plan
