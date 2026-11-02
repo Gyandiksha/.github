@@ -1,0 +1,106 @@
+name: "Test Case"
+description: "QA: write a test case for a development task (can be written before the task is ready)"
+title: "[QA]: "
+labels: ["qa-test"]
+body:
+  - type: markdown
+    attributes:
+      value: "Written by QA. When the task reaches **Ready for QA** you'll be pinged here; then set **QA Status** on the board (In Progress → Accepted / Rejected)."
+  - type: input
+    id: parent
+    attributes:
+      label: Parent Issue
+      description: "The development Task this test case verifies, e.g. #14 or a full issue URL."
+    validations:
+      required: true
+  - type: dropdown
+    id: testing_level
+    attributes:
+      label: Testing Level
+      options:
+        - Unit
+        - Integration
+        - System
+        - User Acceptance (UAT)
+        - Regression
+    validations:
+      required: true
+  - type: dropdown
+    id: testing_category
+    attributes:
+      label: Testing Category
+      options:
+        - Functional
+        - Non-Functional
+        - UI/UX
+        - Performance / Load
+        - Security
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - High
+        - Medium
+        - Low
+  - type: input
+    id: scenario
+    attributes:
+      label: Test Scenario / Test Case Reference
+      placeholder: e.g. TC-LOGIN-04 · Login with special characters in password
+  - type: textarea
+    id: precondition
+    attributes:
+      label: Testing PreCondition
+      description: State the system must be in before the test.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Test Steps
+      placeholder: |
+        1. Open the login page
+        2. Enter ...
+    validations:
+      required: true
+  - type: textarea
+    id: data
+    attributes:
+      label: Test Data / Input
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment / Configuration
+      placeholder: e.g. Staging, Chrome 130, PostgreSQL 15
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Result
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "**Fill these in after execution** (edit the issue description):"
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Result
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Only if the test fails.
+      options:
+        - Critical
+        - Major
+        - Minor
+        - Trivial
+  - type: input
+    id: attachment
+    attributes:
+      label: Attachment Link
+  - type: textarea
+    id: remarks
+    attributes:
+      label: Remarks
