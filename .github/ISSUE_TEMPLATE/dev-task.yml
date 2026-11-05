@@ -7,7 +7,7 @@ body:
     id: parent
     attributes:
       label: Parent Issue
-      description: "The Story this task belongs to, e.g. #63 or a full issue URL."
+      description: "The Story this task belongs to. Stories live in usk-requirements, so write e.g. usk-requirements#63 (or paste the Story URL)."
     validations:
       required: true
   - type: dropdown
