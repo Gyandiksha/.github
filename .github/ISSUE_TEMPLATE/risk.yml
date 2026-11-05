@@ -1,24 +1,32 @@
 name: "Risk"
-description: "Log a project risk for monitoring (PM)"
+description: "PM: record a project risk (schedule, scope, technical, resourcing, vendor) so it is tracked in the Risks view and the weekly report."
 title: "[RISK]: "
 labels: ["Risk"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Create this in the **requirements repository**. It appears in the **Risks** view with Owner = PM, and the weekly report counts open risks and those rated High.
+        Review it regularly; close it when the risk has passed or has been fully mitigated.
   - type: input
     id: related
     attributes:
       label: Related Issue
-      description: "Optional: the requirement or task this risk affects, e.g. #11"
+      description: "Optional: the requirement or task the risk affects, e.g. #11, requirements#11 or backend-repo#14. This does not link it as a sub-issue."
+      placeholder: "#11"
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: What could go wrong?
+      description: "What could go wrong, what would cause it, and what it would affect if it happened."
+      placeholder: "The SSO vendor may deliver SAML metadata after 20 Nov, delaying the Authentication Epic and the demo."
     validations:
       required: true
   - type: dropdown
     id: likelihood
     attributes:
       label: Likelihood
+      description: "How likely it is to happen: High = more likely than not, Medium = possible, Low = unlikely."
       options: [High, Medium, Low]
     validations:
       required: true
@@ -26,6 +34,7 @@ body:
     id: impact
     attributes:
       label: Risk Impact
+      description: "How bad it would be: High = misses a release or a commitment, Medium = noticeable delay or rework, Low = small and easily absorbed."
       options: [High, Medium, Low]
     validations:
       required: true
@@ -33,8 +42,11 @@ body:
     id: owner
     attributes:
       label: Risk Owner
-      description: "@mention who manages this risk"
+      description: "The person who watches this risk and acts on it, as an @mention."
+      placeholder: "@project-manager"
   - type: textarea
     id: mitigation
     attributes:
       label: Mitigation Plan
+      description: "What is being done to make it less likely or less harmful, and the fallback if it happens anyway."
+      placeholder: "Follow up with the vendor weekly; fall back to e-mail/password login for the demo if metadata is not received by 18 Nov."
