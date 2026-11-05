@@ -10,7 +10,7 @@ body:
     id: parent
     attributes:
       label: Parent Issue
-      description: "The requirement this is about, e.g. #11 or a full issue URL."
+      description: "The requirement this is about, e.g. usk-requirements#11 (or paste its URL)."
     validations:
       required: true
   - type: dropdown
