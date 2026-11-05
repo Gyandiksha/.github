@@ -21,7 +21,7 @@ body:
     id: parent
     attributes:
       label: Parent Issue
-      description: "The Epic / Feature / Sub-Feature this belongs to, e.g. #63 or a full issue URL. Leave empty for an Epic."
+      description: "The Epic / Feature / Sub-Feature this belongs to, e.g. #63 (same repo) or usk-requirements#63. Leave empty for an Epic."
   - type: input
     id: project_version
     attributes:
