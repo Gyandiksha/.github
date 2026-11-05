@@ -1,22 +1,27 @@
 name: "Change Request / Clarification"
-description: "Development feedback on a requirement: ask for a clarification or propose a change"
+description: "TL / developers: ask the EM to clarify a requirement or propose a change to it. The requirement's owner is notified and the requirement stays open until this is resolved."
 title: "[CR]: "
 labels: ["Change Request"]
 body:
   - type: markdown
     attributes:
-      value: "Raised against a **requirement** (Epic / Feature / Sub-Feature / Story). Its owner (EM) is notified automatically."
+      value: |
+        Create this in the **requirements repository**, under the Epic, Feature, Sub-Feature or Story it concerns.
+        The requirement's assignee (EM) is @mentioned on the requirement and the request appears in **Waiting on EM**.
+        The EM answers here, updates the requirement text if it changes, then closes this request. Until it is closed, the requirement cannot roll up to Closed.
   - type: input
     id: parent
     attributes:
       label: Parent Issue
-      description: "The requirement this is about, e.g. usk-requirements#11 (or paste its URL)."
+      description: "The requirement this is about. Write #11 if it is in this repository, otherwise requirements#11 or paste its URL."
+      placeholder: "#11"
     validations:
       required: true
   - type: dropdown
     id: request_type
     attributes:
       label: Request Type
+      description: "Clarification = the requirement is unclear or incomplete, no change intended. Change Request = the requirement should change (scope, rules, design)."
       options:
         - Clarification
         - Change Request
@@ -26,22 +31,27 @@ body:
     id: raised_from
     attributes:
       label: Raised From Task
-      description: "Optional: the task where this came up, e.g. #14"
+      description: "Optional: the task where the question came up, so the EM can see the context."
+      placeholder: "backend-repo#14"
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: What is unclear, or what should change and why?
+      description: "What exactly is unclear, or what should change and why. Quote the part of the requirement concerned."
+      placeholder: "Acceptance criteria say 'one active application per scholarship' but do not say whether a rejected application counts as active."
     validations:
       required: true
   - type: textarea
     id: proposed
     attributes:
       label: Proposed Change
+      description: "Your suggested answer or new wording, if you have one."
+      placeholder: "Treat rejected applications as inactive, so the student can re-apply before the deadline."
   - type: dropdown
     id: impact
     attributes:
       label: Impact
+      description: "What changes if this is accepted; select all that apply."
       multiple: true
       options:
         - Scope
@@ -53,6 +63,7 @@ body:
     id: priority
     attributes:
       label: Priority
+      description: "How urgently an answer is needed: High if development is blocked."
       options:
         - High
         - Medium
