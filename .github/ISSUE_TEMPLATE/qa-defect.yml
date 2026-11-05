@@ -1,30 +1,34 @@
-name: "Test Case"
-description: "QA: write a test case for a development task (can be written before the task is ready)"
-title: "[QA]: "
-labels: ["qa-test"]
+name: "Bug Report"
+description: "Report a defect found during testing. Track it with Bug Status on the board: New → Valid / Invalid → Fixing → On Staging → Retest → Closed / Reopened."
+title: "[BUG]: "
+labels: ["Bug"]
 body:
-  - type: markdown
-    attributes:
-      value: "Written by QA. When the task reaches **Ready for QA** you'll be pinged here; then set **QA Status** on the board (In Progress → Accepted / Rejected)."
   - type: input
     id: parent
     attributes:
       label: Parent Issue
-      description: "The development Task this test case verifies, e.g. backend-repo#14 or #14 if it is in this repo (or paste its URL)."
+      description: "The Task where the bug was found, e.g. backend-repo#64 or #64 if it is in this repo (a Test Case also works; the bug is linked to its task)."
     validations:
       required: true
   - type: dropdown
-    id: testing_level
+    id: severity
     attributes:
-      label: Testing Level
+      label: Severity
       options:
-        - Unit
-        - Integration
-        - System
-        - User Acceptance (UAT)
-        - Regression
+        - Critical
+        - Major
+        - Minor
+        - Trivial
     validations:
       required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - High
+        - Medium
+        - Low
   - type: dropdown
     id: testing_category
     attributes:
@@ -37,70 +41,41 @@ body:
         - Security
     validations:
       required: true
-  - type: dropdown
-    id: priority
-    attributes:
-      label: Priority
-      options:
-        - High
-        - Medium
-        - Low
   - type: input
-    id: scenario
+    id: test_scenario
     attributes:
       label: Test Scenario / Test Case Reference
-      placeholder: e.g. TC-LOGIN-04 · Login with special characters in password
-  - type: textarea
-    id: precondition
-    attributes:
-      label: Testing PreCondition
-      description: State the system must be in before the test.
-  - type: textarea
-    id: steps
-    attributes:
-      label: Test Steps
-      placeholder: |
-        1. Open the login page
-        2. Enter ...
-    validations:
-      required: true
-  - type: textarea
-    id: data
-    attributes:
-      label: Test Data / Input
   - type: textarea
     id: environment
     attributes:
       label: Environment / Configuration
-      placeholder: e.g. Staging, Chrome 130, PostgreSQL 15
+      placeholder: e.g., Staging, Chrome v118, PostgreSQL 15
+    validations:
+      required: true
   - type: textarea
-    id: expected
+    id: test_steps
+    attributes:
+      label: Steps to Reproduce & Preconditions
+    validations:
+      required: true
+  - type: textarea
+    id: test_data
+    attributes:
+      label: Test Data / Input
+  - type: textarea
+    id: expected_result
     attributes:
       label: Expected Result
     validations:
       required: true
-  - type: markdown
-    attributes:
-      value: "**Fill these in after execution** (edit the issue description):"
   - type: textarea
-    id: actual
+    id: actual_result
     attributes:
       label: Actual Result
-  - type: dropdown
-    id: severity
-    attributes:
-      label: Severity
-      description: Only if the test fails.
-      options:
-        - Critical
-        - Major
-        - Minor
-        - Trivial
+    validations:
+      required: true
   - type: input
     id: attachment
     attributes:
       label: Attachment Link
-  - type: textarea
-    id: remarks
-    attributes:
-      label: Remarks
+      description: Screenshots, recordings, or logs (e.g., Grafana/Dozzle links).
