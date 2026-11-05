@@ -10,7 +10,7 @@ body:
     id: parent
     attributes:
       label: Parent Issue
-      description: "The development Task this test case verifies, e.g. #14 or a full issue URL."
+      description: "The development Task this test case verifies, e.g. backend-repo#14 or #14 if it is in this repo (or paste its URL)."
     validations:
       required: true
   - type: dropdown
