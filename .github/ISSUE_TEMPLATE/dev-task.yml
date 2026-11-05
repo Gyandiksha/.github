@@ -1,19 +1,27 @@
 name: "Development Task"
-description: Create a technical task for Frontend, Backend, API, or DB work
+description: "TL / developers: a piece of Frontend, Backend, API, Database or DevOps work under a Story. Create it in the repository where the code changes."
 title: "[TASK]: "
 labels: ["Dev Task"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        One task = one reviewable unit of work, delivered through pull requests in **this** repository.
+        The task is linked under its Story, starts in **Backlog**, and moves automatically: PR opened → Code Review, PR merged → Ready for QA. **Only QA acceptance closes it.**
+        In every PR for this task, write `Task: #<this issue number>` in the description.
   - type: input
     id: parent
     attributes:
       label: Parent Issue
-      description: "The Story this task belongs to. Stories live in usk-requirements, so write e.g. usk-requirements#63 (or paste the Story URL)."
+      description: "The Story this task delivers. Stories live in the requirements repository, so write requirements#63 or paste the Story's URL."
+      placeholder: "requirements#63"
     validations:
       required: true
   - type: dropdown
     id: task_type
     attributes:
       label: Task Type
+      description: "The kind of work; copied to the Task Category field on the board."
       options:
         - Frontend
         - Backend
@@ -26,20 +34,29 @@ body:
     id: accountable_person
     attributes:
       label: Accountable Person
-      description: "@mention the person ultimately accountable (Lead / Architect). Use Assignees for the Responsible Person."
+      description: "The person ultimately answerable for this task (lead engineer or architect), as an @mention. The developer doing the work is set as Assignee."
+      placeholder: "@lead-architect"
   - type: input
     id: estimate
     attributes:
       label: Estimated Effort (Hours)
-      placeholder: e.g. 6
+      description: "Estimated hours of work, as a number; copied to Estimated Effort (Hours). Change it later with the comment /estimate 6 and log actual time with /actual 7.5."
+      placeholder: "6"
   - type: textarea
     id: description
     attributes:
       label: Technical Description & Action Items
+      description: "What to build and how: endpoints, components, tables, design decisions and the concrete steps. Refer to the Story's acceptance criteria rather than repeating them."
+      placeholder: |
+        Build POST /api/scholarships/{id}/apply:
+        - validate eligibility against the student profile
+        - store the application and uploaded certificate
+        - send the confirmation e-mail
     validations:
       required: true
   - type: textarea
     id: dependencies
     attributes:
       label: Blockers & Dependencies
-      description: APIs, DB migrations (e.g., Flyway), or pending PRs needed first.
+      description: "Anything that must happen first: other tasks or PRs, APIs from another team, DB migrations (e.g. Flyway), environment access. Link them with #numbers."
+      placeholder: "Needs backend#41 (profile API) merged; Flyway migration V12 for the applications table."
