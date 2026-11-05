@@ -48,7 +48,7 @@ body:
         - Timeline
         - Effort
         - Design / UI
-        - None
+        - No impact
   - type: dropdown
     id: priority
     attributes:
