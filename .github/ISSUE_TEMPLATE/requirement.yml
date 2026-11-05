@@ -1,15 +1,19 @@
 name: "Requirement Specification"
-description: Define an Epic, Feature, Sub-Feature, or User Story
+description: "EM / PM: define an Epic, Feature, Sub-Feature or Story for USK. Create these in the requirements repository; development tasks are then raised under the Story."
 title: "[REQ]: "
 labels: ["Requirement"]
 body:
   - type: markdown
     attributes:
-      value: "Requirement details for the Ucchha-Shiksha Samiksha Kendra project. Hierarchy: Epic → Feature → Sub-Feature → Story → Task."
+      value: |
+        Use this form for every requirement of the **Ucchha-Shiksha Samiksha Kendra (USK)** project.
+        Requirements are nested **Epic → Feature → Sub-Feature (optional) → Story**, and development tasks are created under a Story.
+        The issue is added to USK Tracker automatically, typed from **Level**, and linked under its **Parent Issue**. Assign the EM who owns it so change requests reach them.
   - type: dropdown
     id: level
     attributes:
       label: Level
+      description: "Epic = a large product area (e.g. Scholarship Management). Feature = a capability within it. Sub-Feature = an optional split of a large Feature. Story = one user-facing piece of work small enough for development tasks."
       options:
         - Epic
         - Feature
@@ -21,16 +25,19 @@ body:
     id: parent
     attributes:
       label: Parent Issue
-      description: "The Epic / Feature / Sub-Feature this belongs to, e.g. #63 (same repo) or usk-requirements#63. Leave empty for an Epic."
+      description: "The requirement one level up: a Feature's Epic, a Sub-Feature's Feature, a Story's Feature or Sub-Feature. Write #63 (same repository), requirements#63, or paste the issue URL. Leave empty only for an Epic."
+      placeholder: "#63"
   - type: input
     id: project_version
     attributes:
       label: Project Version
-      placeholder: e.g. v1.0
+      description: "The release this requirement belongs to."
+      placeholder: "v1.0.0"
   - type: dropdown
     id: requirement_type
     attributes:
       label: Requirement Type
+      description: "Functional = what the system does (screens, rules, data). Non-Functional = how well it does it (performance, security, availability, accessibility)."
       options:
         - Functional
         - Non-Functional
@@ -38,72 +45,95 @@ body:
     id: roles
     attributes:
       label: Authorized Roles
-      description: Who can access or execute this? (e.g., Admin, Student, Faculty)
+      description: "Which user roles may see or use this feature."
+      placeholder: "Student, Faculty, Admin"
   - type: textarea
     id: business_rules
     attributes:
       label: Business Rules / Detailed Description
+      description: "What the feature does and the rules behind it, in enough detail for the TL to plan tasks and for QA to write test cases. For an Epic, the business goal and scope."
+      placeholder: "A student can view all active higher-education scholarships, check eligibility against their profile and apply online. Only one active application per scholarship is allowed."
     validations:
       required: true
   - type: textarea
     id: preconditions
     attributes:
       label: Preconditions
-      description: What state must the system be in?
+      description: "What must already be true before this feature can be used (logged in, profile complete, data present)."
+      placeholder: "Student is registered and logged in; profile has education details."
   - type: textarea
     id: trigger
     attributes:
       label: Trigger / Event
-      description: What event starts this?
+      description: "The user action or system event that starts the flow."
+      placeholder: "Student opens Scholarships from the dashboard."
   - type: textarea
     id: inputs
     attributes:
       label: Inputs / Fields
+      description: "Every field the user enters or the system receives, with its type."
+      placeholder: "Scholarship ID (read-only), Annual family income (number), Marks percentage (number), Income certificate (PDF)"
   - type: textarea
     id: validations
     attributes:
       label: Validation Rules
+      description: "Rules each input must satisfy, and the message shown when it does not."
+      placeholder: "Income must be a positive number; certificate must be a PDF under 2 MB, otherwise show 'Upload a PDF up to 2 MB'."
   - type: textarea
     id: acceptance_criteria
     attributes:
       label: Acceptance Criteria
-      description: What defines this requirement as complete?
+      description: "Testable statements that must all be true for this requirement to be accepted. QA writes test cases from these."
+      placeholder: |
+        - Eligible scholarships are listed first, with deadline and amount
+        - An application cannot be submitted after the deadline
+        - The student receives a confirmation e-mail after submitting
     validations:
       required: true
   - type: textarea
     id: action_items
     attributes:
       label: Action Items
+      description: "Open decisions or follow-ups needed before or during development, with who owns them."
   - type: input
     id: ui_reference
     attributes:
       label: UI Rules / Figma Reference
+      description: "Link to the Figma frame or UI guideline for the screens involved."
+      placeholder: "https://www.figma.com/file/..."
   - type: textarea
     id: workflow
     attributes:
       label: Workflow / Process Flow
+      description: "The step-by-step flow from trigger to result, including approvals or hand-offs between roles."
+      placeholder: "1. Student opens list → 2. Selects scholarship → 3. Eligibility check → 4. Fills form → 5. Submits → 6. Admin reviews"
   - type: textarea
     id: expected_result
     attributes:
       label: Expected Result / Outputs
+      description: "What the user sees or the system produces when the flow succeeds (records created, messages, e-mails, reports)."
   - type: textarea
     id: alternate_scenario
     attributes:
       label: Alternate / Exception Scenarios
+      description: "What happens on errors, edge cases and unusual paths (not eligible, deadline passed, service down)."
   - type: input
     id: consulted
     attributes:
       label: Consulted
-      description: Who must be consulted? (@mentions)
+      description: "People whose input is required before this requirement is final (@mention them). Tick 'Consulted phase completed' below once done."
+      placeholder: "@domain-expert, @tech-lead"
   - type: input
     id: informed
     attributes:
       label: Informed
-      description: Who must be informed? (@mentions)
+      description: "People who must be told about this requirement or its changes (@mention them). Tick 'Informed phase completed' below once done."
+      placeholder: "@qa-lead, @project-manager"
   - type: checkboxes
     id: communication
     attributes:
       label: Stakeholder Communication
+      description: "Tick these in the issue (no edit needed) as each step is completed; the weekly report shows them as Done or Pending."
       options:
         - label: Consulted phase completed
-        - label: Informed phase completed
+        - label: Informed phase completeds
