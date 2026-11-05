@@ -1,22 +1,27 @@
 name: "Test Case"
-description: "QA: write a test case for a development task (can be written before the task is ready)"
+description: "QA: a test case for one development task. Write it while the task is being built; you are pinged here when the task is Ready for QA."
 title: "[QA]: "
 labels: ["qa-test"]
 body:
   - type: markdown
     attributes:
-      value: "Written by QA. When the task reaches **Ready for QA** you'll be pinged here; then set **QA Status** on the board (In Progress → Accepted / Rejected)."
+      value: |
+        Create this in the **same repository as the task** it verifies. It appears in QA Tracker with **QA Status = Pending**.
+        When the task reaches **Ready for QA** you get a comment here. Then set QA Status to **In Progress**, and finally **Accepted** or **Rejected**.
+        A rejection needs a reason (the **Rejection Reason** field on the board, or a comment); the developer receives it, and a retest is created when the task comes back.
   - type: input
     id: parent
     attributes:
       label: Parent Issue
-      description: "The development Task this test case verifies, e.g. backend-repo#14 or #14 if it is in this repo (or paste its URL)."
+      description: "The development task this test case verifies. Write #14 if the task is in this repository, otherwise backend-repo#14 or the task's URL."
+      placeholder: "#14"
     validations:
       required: true
   - type: dropdown
     id: testing_level
     attributes:
       label: Testing Level
+      description: "Unit = one function or component. Integration = parts working together. System = the whole application end to end. UAT = acceptance by business users. Regression = re-checking existing behaviour after a change."
       options:
         - Unit
         - Integration
@@ -29,6 +34,7 @@ body:
     id: testing_category
     attributes:
       label: Testing Category
+      description: "What aspect is being tested."
       options:
         - Functional
         - Non-Functional
@@ -41,6 +47,7 @@ body:
     id: priority
     attributes:
       label: Priority
+      description: "How important this case is to execute first: High for core flows and acceptance criteria, Low for rare edge cases."
       options:
         - High
         - Medium
@@ -49,48 +56,58 @@ body:
     id: scenario
     attributes:
       label: Test Scenario / Test Case Reference
-      placeholder: e.g. TC-LOGIN-04 · Login with special characters in password
+      description: "Your test case ID and the scenario in one line."
+      placeholder: "TC-SCH-04 · Apply for a scholarship after the deadline"
   - type: textarea
     id: precondition
     attributes:
       label: Testing PreCondition
-      description: State the system must be in before the test.
+      description: "The state the system and data must be in before step 1 (user, role, records, configuration)."
+      placeholder: "Logged in as a student with a complete profile; scholarship 'Merit 2026' has a deadline in the past."
   - type: textarea
     id: steps
     attributes:
       label: Test Steps
+      description: "Numbered steps anyone can follow exactly, one action per step."
       placeholder: |
-        1. Open the login page
-        2. Enter ...
+        1. Open Scholarships from the dashboard
+        2. Select 'Merit 2026'
+        3. Click Apply
     validations:
       required: true
   - type: textarea
     id: data
     attributes:
       label: Test Data / Input
+      description: "The exact values, files or accounts used, so the test can be repeated."
+      placeholder: "student01@test.in / Test@123; income 250000; certificate sample.pdf (1.2 MB)"
   - type: textarea
     id: environment
     attributes:
       label: Environment / Configuration
-      placeholder: e.g. Staging, Chrome 130, PostgreSQL 15
+      description: "Where the test runs: environment, build or version, browser or device, and anything special in the configuration."
+      placeholder: "Staging, build 1.4.2, Chrome 130 on Windows 11"
   - type: textarea
     id: expected
     attributes:
       label: Expected Result
+      description: "What must happen if the feature works, taken from the Story's acceptance criteria."
+      placeholder: "Apply is disabled and the message 'Applications for this scholarship are closed' is shown."
     validations:
       required: true
   - type: markdown
     attributes:
-      value: "**Fill these in after execution** (edit the issue description):"
+      value: "**Fill in the fields below after executing the test** (⋯ → Edit on this description)."
   - type: textarea
     id: actual
     attributes:
       label: Actual Result
+      description: "What actually happened when you ran the steps. Leave empty until executed."
   - type: dropdown
     id: severity
     attributes:
       label: Severity
-      description: Only if the test fails.
+      description: "Only when the test fails. Critical = blocks the flow or loses data; Major = a main function is wrong; Minor = wrong but has a workaround; Trivial = cosmetic."
       options:
         - Critical
         - Major
@@ -100,7 +117,10 @@ body:
     id: attachment
     attributes:
       label: Attachment Link
+      description: "Link to screenshots, a screen recording or logs that show the result."
+      placeholder: "https://drive.example.com/... or a Grafana / Dozzle link"
   - type: textarea
     id: remarks
     attributes:
       label: Remarks
+      description: "Anything else worth knowing: observations, related bugs (#numbers), suggestions."
