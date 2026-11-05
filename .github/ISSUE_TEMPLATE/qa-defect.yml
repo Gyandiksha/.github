@@ -1,19 +1,27 @@
 name: "Bug Report"
-description: "Report a defect found during testing. Track it with Bug Status on the board: New → Valid / Invalid → Fixing → On Staging → Retest → Closed / Reopened."
+description: "QA: report a defect found while testing a task. Its Bug Status on the board drives the fix and retest: New → Valid / Invalid → Fixing → On Staging → Retest → Closed / Reopened."
 title: "[BUG]: "
 labels: ["Bug"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Create this in the **same repository as the task** where the bug was found. It is linked under the task and gets **Bug Status = New**.
+        Then: QA sets **Valid** (the task is re-opened and the developer is notified) or **Invalid** (the bug is closed). The developer sets **On Staging** when the fix is deployed; QA retests and sets **Closed** or **Reopened**.
+        While a bug is open, its task cannot close.
   - type: input
     id: parent
     attributes:
       label: Parent Issue
-      description: "The Task where the bug was found, e.g. backend-repo#64 or #64 if it is in this repo (a Test Case also works; the bug is linked to its task)."
+      description: "The development task where the bug was found. Write #64 if it is in this repository, otherwise backend-repo#64 or the task's URL. A test case number also works: the bug is linked to that test case's task."
+      placeholder: "#64"
     validations:
       required: true
   - type: dropdown
     id: severity
     attributes:
       label: Severity
+      description: "Impact on users. Critical = crash, data loss, security hole or a blocked main flow; Major = a main function gives wrong results; Minor = wrong but has a workaround; Trivial = cosmetic or text."
       options:
         - Critical
         - Major
@@ -25,6 +33,7 @@ body:
     id: priority
     attributes:
       label: Priority
+      description: "How soon it must be fixed; copied to the Priority field on the board."
       options:
         - High
         - Medium
@@ -33,6 +42,7 @@ body:
     id: testing_category
     attributes:
       label: Testing Category
+      description: "The kind of testing that found it."
       options:
         - Functional
         - Non-Functional
@@ -45,37 +55,51 @@ body:
     id: test_scenario
     attributes:
       label: Test Scenario / Test Case Reference
+      description: "The test case or scenario that failed, if any."
+      placeholder: "TC-SCH-04 (#88)"
   - type: textarea
     id: environment
     attributes:
       label: Environment / Configuration
-      placeholder: e.g., Staging, Chrome v118, PostgreSQL 15
+      description: "Where it happens: environment, build or version, browser or device, database version."
+      placeholder: "Staging, build 1.4.2, Chrome 130, PostgreSQL 15"
     validations:
       required: true
   - type: textarea
     id: test_steps
     attributes:
       label: Steps to Reproduce & Preconditions
+      description: "The starting state, then numbered steps that make the bug appear every time."
+      placeholder: |
+        Precondition: logged in as student01, deadline of 'Merit 2026' has passed.
+        1. Open Scholarships
+        2. Select 'Merit 2026'
+        3. Click Apply
     validations:
       required: true
   - type: textarea
     id: test_data
     attributes:
       label: Test Data / Input
+      description: "The exact values, files or accounts used."
   - type: textarea
     id: expected_result
     attributes:
       label: Expected Result
+      description: "What should have happened, according to the requirement."
+      placeholder: "Apply is disabled with the message 'Applications for this scholarship are closed'."
     validations:
       required: true
   - type: textarea
     id: actual_result
     attributes:
       label: Actual Result
+      description: "What happened instead, including any error message or code exactly as shown."
+      placeholder: "The form opens and submitting returns 500 Internal Server Error."
     validations:
       required: true
   - type: input
     id: attachment
     attributes:
       label: Attachment Link
-      description: Screenshots, recordings, or logs (e.g., Grafana/Dozzle links).
+      description: "Screenshot, screen recording or log link that shows the bug (e.g. Grafana or Dozzle)."
