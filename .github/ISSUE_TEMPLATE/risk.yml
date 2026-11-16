@@ -1,12 +1,12 @@
 name: "Risk"
-description: "PM: record a project risk (schedule, scope, technical, resourcing, vendor) so it is tracked in the Risks view and the weekly report."
+description: "EM / TL / QA: record a project risk (schedule, scope, technical, resourcing, vendor) so the PM and CEO can follow it in the Risks view and the weekly report."
 title: "[RISK]: "
 labels: ["Risk"]
 body:
   - type: markdown
     attributes:
       value: |
-        Create this in the **requirements repository**. It appears in the **Risks** view with Owner = PM, and the weekly report counts open risks and those rated High.
+        Create this in the **requirements repository**. It appears in the **Risks** view with Owner = EM, and the weekly report to the PM and CEO counts open risks and those rated High.
         Review it regularly; close it when the risk has passed or has been fully mitigated.
   - type: input
     id: related
@@ -43,7 +43,7 @@ body:
     attributes:
       label: Risk Owner
       description: "The person who watches this risk and acts on it, as an @mention."
-      placeholder: "@project-manager"
+      placeholder: "@engineering-manager"
   - type: textarea
     id: mitigation
     attributes:
