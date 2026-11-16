@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Create this in the **same repository as the task** where the bug was found. It is linked under the task and gets **Bug Status = New**.
-        Then: QA sets **Valid** (the task is re-opened and the developer is notified) or **Invalid** (the bug is closed). The developer sets **On Staging** when the fix is deployed; QA retests and sets **Closed** or **Reopened**.
+        Then: QA sets **Valid** (the bug is assigned to the task's developer, the task is re-opened) or **Invalid** (the bug is closed). The developer sets **On Staging** when the fix is deployed (the bug is assigned back to you for retest); you set **Closed** or **Reopened** (assigned back to the developer).
         While a bug is open, its task cannot close.
   - type: input
     id: parent
